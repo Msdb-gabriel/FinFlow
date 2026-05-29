@@ -47,12 +47,11 @@ public class FinanceiroService  {
             else if (t instanceof Despesa){
                 totalDespesa += t.getValor();
 
-                 totalDespesa -= totalReceita;
             }
 
         }
 
-        double saldoFinal = totalReceita - totalDespesa;
+        double saldoFinal = (totalReceita - totalDespesa);
 
         return "RELATÓRIO MENSAL\n" +
             "Receitas: " + totalReceita + "\n" +
