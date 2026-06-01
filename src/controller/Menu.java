@@ -28,9 +28,15 @@ public class Menu {
             System.out.println("5 - Calcular saldo");
             System.out.println("0 - Finalizar");
 
-            int opcao = sc.nextInt();
-            sc.nextLine();
-
+            int opcao;
+           try {
+               opcao = sc.nextInt();
+           }
+           catch (Exception e){
+               System.out.println("Apenas números de 0 a 5");
+               sc.nextLine();
+               continue;
+           }
             if (opcao == 0) {
                 System.out.println("Finalizando...");
                 break;
@@ -39,10 +45,25 @@ public class Menu {
                 case 1 -> {
                     System.out.println("Digite o mês e ano desejado");
                     System.out.print("Mês: ");
-                    int mes = sc.nextInt();
+                    int mes;
+                    try {
+                        mes = sc.nextInt();
+                    }
+                    catch (Exception e){
+                        System.out.println("Digite apenas números");
+                        sc.nextLine();
+                        continue;
+                    }
                     System.out.print("Ano: ");
-                    int ano = sc.nextInt();
-
+                    int ano;
+                    try {
+                        ano = sc.nextInt();
+                    }
+                    catch (Exception e){
+                        System.out.println("Digite apenas números");
+                        sc.nextLine();
+                        continue;
+                    }
 
                     for (Transacao t : service.filtrarPorMes(mes, ano)){
 
@@ -65,14 +86,30 @@ public class Menu {
                     System.out.println("Digite uma opção: ");
                     System.out.println("1 - Receita");
                     System.out.println("2 - Despesa");
-                    int esc = sc.nextInt();
-                    sc.nextLine();
+                    int esc;
+                    try {
+                         esc = sc.nextInt();
+                        sc.nextLine();
+                    }
+                    catch (Exception e){
+                        System.out.println("Apenas números 1 ou 2");
+                        sc.nextLine();
+                        continue;
+                    }
 
                     System.out.println("Digite a descrição: ");
                     String desc = sc.nextLine();
                     System.out.println("Digite o valor: ");
-                    double valor = sc.nextDouble();
-                    sc.nextLine();
+                    double valor;
+                    try{
+                        valor = sc.nextDouble();
+                        sc.nextLine();
+                    }
+                    catch (Exception e){
+                        System.out.println("Apenas números");
+                        sc.nextLine();
+                        continue;
+                    }
 
                     if (esc == 1){
 
@@ -88,7 +125,7 @@ public class Menu {
                 }
                 case 4 -> {
 
-                    System.out.println("\"\\n=================== TRANSAÇÕES ===================\"");
+                    System.out.println("\n=================== TRANSAÇÕES ===================");
                     for (Transacao t : service.listar()){
 
                         System.out.println(t);
